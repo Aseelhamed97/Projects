@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>timer</title>
+</head>
+
+<body>
+    <header>
+        <h1>You've been here since  minutes</h1>
+    </header>
+    <p id="time"></p>
+    <h1 id="diff time"></h1>
+
+</body>
+
+<script>
+// calculate the defference time between date and new date
+    console.log("aseelhamed");
+    var currentdate = new Date();
+    var D;
+    var currenttime;
+    var delayInMilliseconds = 1000;
+    var date = currentdate.toLocaleString();
+
+
+
+    var start = currentdate.getHours() + ":" + currentdate.getMinutes();
+    var end = currentdate.getHours() + ":" + currentdate.getMinutes();
+
+    //while (end) {
+    //   var difft = diff(start, end);
+    //   document.getElementById("diff time").innerHTML = difft;
+    //   end = currentdate.getHours() + ":" + currentdate.getMinutes() + ":" + currentdate.getSeconds();
+    //  }
+    document.getElementById("time").innerHTML = date;
+    document.getElementById("diff time").innerHTML = "You've been here since "+ "{" + diff(start, end) +"}" +" minutes";
+
+
+    setInterval(function () {
+        //your code to be executed after 1 second
+        D = new Date();
+        currenttime = D.getHours() + ":" + D.getMinutes();
+
+        console.log(currenttime);
+        document.getElementById("diff time").innerHTML ="You've been here since "+ "{" + diff(start, currenttime) + "}" +" minutes";
+
+    }, delayInMilliseconds);
+
+
+
+    
+    function diff(start, end) {
+        start = start.split(":");
+        end = end.split(":");
+        var startDate = new Date(0, 0, 0, start[0], start[1], 0);
+        var endDate = new Date(0, 0, 0, end[0], end[1], 0);
+        var diff = endDate.getTime() - startDate.getTime();
+        var hours = Math.floor(diff / 1000 / 60 / 60);
+        diff -= hours * 1000 * 60 * 60;
+        var minutes = Math.floor(diff / 1000 / 60);
+
+        // If using time pickers with 24 hours format, add the below line get exact hours
+        if (hours < 0)
+            hours = hours + 24;
+
+        return (hours <= 9 ? "0" : "") + hours + ":" + (minutes <= 9 ? "0" : "") + minutes;
+    }
+
+
+    // function diff(start, currenttime) {
+    //     start = start.split(":");
+    //     end = end.split(":");
+    //     var startDate = new Date(0, 0, 0, start[0], start[1], 0);
+    //     var endDate = new Date(0, 0, 0, end[0], end[1], 0);
+    //     var diff = endDate.getTime() - startDate.getTime();
+    //     var hours = Math.floor(diff / 1000 / 60 / 60);
+    //     diff -= hours * 1000 * 60 * 60;
+    //     var minutes = Math.floor(diff / 1000 / 60);
+
+    //     // If using time pickers with 24 hours format, add the below line get exact hours
+    //     if (hours < 0)
+    //         hours = hours + 24;
+
+    //     return (hours <= 9 ? "0" : "") + hours + ":" + (minutes <= 9 ? "0" : "") + minutes;
+    // }
+
+</script>
+
+</html>
